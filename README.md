@@ -1,13 +1,13 @@
-# FuginaShop - React E-commerce  
+# **FuginaShop - React E-commerce (Frontend Only)**  
 
-🚀 **FuginaShop** is a modern e-commerce web application built with **React.js**. It provides a seamless shopping experience with product filtering, sorting, and a user-friendly interface.  
+🚀 **FuginaShop** is a modern e-commerce web application built with **React.js**, focusing only on the frontend. It provides a seamless shopping experience with product filtering, sorting, and a user-friendly interface.  
 
 ## ✨ Features  
 
 - 🛍️ Product listing with categories & subcategories  
 - 🔍 Search, filter, and sort products  
 - 🛒 Shopping cart management  
-- 💳 Checkout process  
+- 💳 Checkout process (UI only)  
 - 🎨 Responsive UI for mobile & desktop  
 - 🚀 Fast performance with React  
 
@@ -32,5 +32,8 @@
    ```sh
    npm run dev
    ```
+
 ## 🌐 Live Demo  
 [FuginaShop on Netlify](https://fugina.netlify.app)  
+
+**Note:** This repository focuses only on the frontend. The backend implementation is not included.
