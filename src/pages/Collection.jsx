@@ -8,8 +8,56 @@ const Collection = () => {
   const { products } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+
+  const toggleCategory = (event) => {
+    if (categories.includes(event.target.value)) {
+      setCategories((prev) =>
+        prev.filter((item) => item !== event.target.value)
+      );
+    } else {
+      setCategories((prev) => [...prev, event.target.value]);
+    }
+  };
+
+  const toggleSubCategory = (event) => {
+    if (subCategories.includes(event.target.value)) {
+      setSubCategories((prev) =>
+        prev.filter((item) => item !== event.target.value)
+      );
+    } else {
+      setSubCategories((prev) => [...prev, event.target.value]);
+    }
+  };
+
+  const applyFilter = () => {
+    let productsCopy = products.slice();
+
+    if (categories.length > 0) {
+      productsCopy = productsCopy.filter((item) =>
+        categories.includes(item.category)
+      );
+    }
+
+    if (subCategories.length > 0) {
+      productsCopy = productsCopy.filter((item) =>
+        subCategories.includes(item.subCategory)
+      );
+    }
+
+    setFilterProducts(productsCopy);
+  };
 
   useEffect(() => setFilterProducts(products), []);
+
+  useEffect(() => {
+    applyFilter();
+  }, [categories, subCategories]);
+
+  // useEffect(() => {
+  //   console.log(subCategory);
+  // }, [subCategory]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm: gap-10 pt-10 border-t">
@@ -35,15 +83,30 @@ const Collection = () => {
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Men"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Men"}
+                onChange={toggleCategory}
+              />
               Men
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Women"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Women"}
+                onChange={toggleCategory}
+              />
               Women
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Kids"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Kids"}
+                onChange={toggleCategory}
+              />
               Kids
             </p>
           </div>
@@ -58,15 +121,30 @@ const Collection = () => {
           <p className="mb-3 text-sm font-medium">TYPE</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Topwear"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Topwear"}
+                onChange={toggleSubCategory}
+              />
               Topwear
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Bottomwear"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Bottomwear"}
+                onChange={toggleSubCategory}
+              />
               Bottomwear
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Winterwear"} />
+              <input
+                className="w-3"
+                type="checkbox"
+                value={"Winterwear"}
+                onChange={toggleSubCategory}
+              />
               Winterwear
             </p>
           </div>
